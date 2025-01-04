@@ -17,6 +17,7 @@ export const SUPPORTED_LANG = {
         emptyPH: 'There are many like it, but this one is mine...',
         tipEncrypt: 'This Note has been encrypted, please enter password!',
         tip404: '404, Nothing here',
+        rawText: 'Raw',
     },
     'zh': {
         setPW: '设置密码',
@@ -27,5 +28,6 @@ export const SUPPORTED_LANG = {
         emptyPH: '看来你是第一个到这儿的人，写点什么吧...',
         tipEncrypt: '这是一篇加密笔记，你必须先输入密码',
         tip404: '404，你要找的东西并不存在',
+        rawText: '文本模式',
     }
 }
