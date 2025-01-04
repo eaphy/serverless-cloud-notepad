@@ -11,13 +11,19 @@ const SWITCHER = (text, open, className = '') => `
   <span class="slider round"></span>
 </label>
 `
-const FOOTER = ({ lang, isEdit, updateAt, pw, mode, share }) => `
+const FOOTER = ({ lang, isEdit,isShare,updateAt, pw, mode, share }) => `
     <div class="footer">
         ${isEdit ? `
             <div class="opt">
                 <button class="opt-button opt-pw">${pw ? SUPPORTED_LANG[lang].changePW : SUPPORTED_LANG[lang].setPW}</button>
                 ${SWITCHER('Markdown', mode === 'md', 'opt-mode')}
                 ${SWITCHER(SUPPORTED_LANG[lang].share, share, 'opt-share')}
+            </div>
+            ` : ''
+    }
+        ${isShare ? `
+            <div class="opt">
+                <button class="opt-button opt-pw">${SUPPORTED_LANG[lang].rawText}</button>
             </div>
             ` : ''
     }
@@ -39,7 +45,7 @@ const MODAL = lang => `
     </div>
 </div>
 `
-const HTML = ({ lang, title, content, ext = {}, tips, isEdit, showPwPrompt }) => `
+const HTML = ({ lang, title, content, ext = {}, tips, isEdit,isShare, showPwPrompt }) => `
 <!DOCTYPE html>
 <html>
 <head>
@@ -67,7 +73,7 @@ const HTML = ({ lang, title, content, ext = {}, tips, isEdit, showPwPrompt }) =>
     </div>
     <div id="loading"></div>
     ${MODAL(lang)}
-    ${FOOTER({ ...ext, isEdit, lang })}
+    ${FOOTER({ ...ext, isEdit,isShare, lang })}
     ${(ext.mode === 'md' || ext.share) ? `<script src="${CDN_PREFIX}/js/purify.min.js"></script>` : ''}
     ${ext.mode === 'md' ? `<script src="${CDN_PREFIX}/js/marked.min.js"></script>` : ''}
     <script src="${CDN_PREFIX}/js/clip.min.js"></script>
@@ -78,6 +84,6 @@ const HTML = ({ lang, title, content, ext = {}, tips, isEdit, showPwPrompt }) =>
 `
 
 export const Edit = data => HTML({ isEdit: true, ...data })
-export const Share = data => HTML(data)
+export const Share = data => HTML({ isShare: true, ...data })
 export const NeedPasswd = data => HTML({ tips: SUPPORTED_LANG[data.lang].tipEncrypt, showPwPrompt: true, ...data })
 export const Page404 = data => HTML({ tips: SUPPORTED_LANG[data.lang].tip404, ...data })
