@@ -160,19 +160,14 @@ window.addEventListener('DOMContentLoaded', function () {
 
     if ($rawBtn) {
         $rawBtn.onclick = function () {
-            console.log('Button clicked!'); // 确认按钮点击事件触发
             const currentPath = window.location.pathname;
-            console.log('Current Path:', currentPath); // 打印当前路径
             if (currentPath.startsWith('/share/')) {
                 const rawPath = currentPath.replace('/share/', '/raw/');
-                console.log('New Path:', rawPath); // 打印新路径
                 window.location.href = rawPath;
             } else {
                 alert('Something is Error');
             }
         }
-    } else {
-        console.error('Raw button not found!'); // 如果按钮未找到，打印错误
     }
 
     if ($modeBtn) {
