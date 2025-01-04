@@ -23,7 +23,7 @@ const FOOTER = ({ lang, isEdit,isShare,updateAt, pw, mode, share }) => `
     }
         ${isShare ? `
             <div class="opt">
-                <button class="opt-button opt-pw">${SUPPORTED_LANG[lang].rawText}</button>
+                <button class="opt-button opt-raw">${SUPPORTED_LANG[lang].rawText}</button>
             </div>
             ` : ''
     }
