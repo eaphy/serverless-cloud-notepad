@@ -34,6 +34,7 @@ router.get('/share/:md5', async (request) => {
 })
 
 router.get('/raw/:md5', async (request) => {
+    const lang = getI18n(request);
     const { md5 } = request.params;
     const path = await SHARE.get(md5);
 
