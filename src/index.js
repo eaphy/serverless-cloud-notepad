@@ -33,6 +33,20 @@ router.get('/share/:md5', async (request) => {
     return returnPage('Page404', { lang, title: '404' })
 })
 
+router.get('/raw/:md5', async (request) => {
+    const { md5 } = request.params;
+    const path = await SHARE.get(md5);
+
+    if (path) {
+        const { value } = await queryNote(path);
+        // 直接返回原始内容
+        return new Response(value, {
+            headers: { 'Content-Type': 'text/plain' },
+        });
+    }
+    return new Response('Not Found', { status: 404 });
+});
+
 router.get('/:path', async (request) => {
     const lang = getI18n(request)
 
