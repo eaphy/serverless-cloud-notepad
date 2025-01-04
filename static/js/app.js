@@ -90,6 +90,7 @@ window.addEventListener('DOMContentLoaded', function () {
     const $textarea = document.querySelector('#contents')
     const $loading = document.querySelector('#loading')
     const $pwBtn = document.querySelector('.opt-pw')
+    const $rawBtn = document.querySelector('.opt-raw')
     const $modeBtn = document.querySelector('.opt-mode > input')
     const $shareBtn = document.querySelector('.opt-share > input')
     const $previewPlain = document.querySelector('#preview-plain')
@@ -154,6 +155,18 @@ window.addEventListener('DOMContentLoaded', function () {
                     alert(passwd ? getI18n('pwss') : getI18n('pwrs'))
                 })
                 .catch(err => errHandle(err))
+        }
+    }
+
+    if ($rawBtn) {
+        $rawBtn.onclick = function () {
+            const currentPath = window.location.pathname;
+            if (currentPath.startsWith('/share/')) {
+                const rawPath = currentPath.replace('/share/', '/raw/');
+                window.location.href = rawPath;
+            } else {
+                alert('Something is Error');
+            }
         }
     }
 
