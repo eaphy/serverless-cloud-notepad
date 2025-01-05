@@ -42,7 +42,7 @@ router.get('/raw/:md5', async (request) => {
         const { value } = await queryNote(path);
         // 直接返回原始内容
         return new Response(value, {
-            headers: { 'Content-Type': 'text/plain' },
+            headers: { 'Content-Type': 'text/plain; charset=utf-8' },
         });
     }
     return new Response('Not Found', { status: 404 });
